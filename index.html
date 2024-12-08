@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soft encyclopedia</title>
+  <script>
+         // Entferne die Slugs aus der URL beim Laden der Seite
+            if (window.location.pathname !== '/') {
+                var newURL = window.location.protocol + "//" + window.location.host + '/';
+                window.history.replaceState({}, document.title, newURL);
+            }
+
+  </script>
+  
+
+    <style>
+      /* Deaktiviere die Textauswahl für das gesamte Dokument */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+      
+        * {
+            font: 18px Hershey;
+        }
+
+        @font-face {
+            font-family: Hershey Bold;
+            src: url("https://cdn.glitch.global/3c1c876b-20ac-4c1f-8b76-a7d7cbf2aa45/Hershey-Noailles-Times-Duplex-Italic-Bold.otf?v=1718549369040");
+        }
+      
+        @font-face {
+            font-family: Hershley Light;
+            src: url("https://cdn.glitch.global/3c1c876b-20ac-4c1f-8b76-a7d7cbf2aa45/Hershey-Noailles-Times-Duplex-Italic-Light.otf?v=1718549369458");
+        }
+      
+        .line-number {
+            font: 18px Hershey Bold ;
+          -webkit-user-select: none; /* Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Standard */
+        }
+      
+        #connectionCanvas {
+            color: pink;
+        }
+
+        .first-button,
+        .second-button,
+        .third-button,
+        .fourth-button,
+        .fifth-button,
+        .sixth-button,
+        .seventh-button,
+        .eighth-button,
+        .nineth-button,
+        .tenth-button,
+        .eleventh-button,
+        .tweleveth-button,
+        .thirteenth-button,
+        .fourteenth-button,
+        .fifteenth-button,
+        .sixteenth-button,
+        .eighteenth-button,
+        .nineteenth-button,
+        .twentyth-button,
+        .twentyoneth-button,
+        .twentytwoth-button,
+        .twentythreeth-button,
+        .twentyfourth-button,
+        .twentfiveth-button,
+        .twentysixth-button,
+        .twentyseventh-button,
+        .twentyeighth-button,
+        .twentynineth-button,
+        .thirtyth-button,
+        .thirtyoneth-button,
+        .thirtytwoth-button,
+        .thirtythreeth-button,
+        .thirtyfourth-button,
+        .thirtyfiveth-button,
+        .thirtysixth-button,
+        .thirtyseventh-button,
+        .thirtyeighth-button {
+            background-color: transparent;
+            border: none;
+            vertical-align: super;
+            
+            position: absolute;
+            transition: filter 0.3s ease;
+            filter: blur(0.1px);
+            color: black;
+            font-size: 24pt;
+         
+        }
+
+        .first-button:hover,
+        .second-button:hover,
+        .third-button:hover,
+        .fourth-button:hover,
+        .fifth-button:hover,
+        .sixth-button:hover,
+        .seventh-button:hover,
+        .eighth-button:hover,
+        .nineth-button:hover,
+        .tenth-button:hover,
+        .eleventh-button:hover,
+        .tweleveth-button:hover,
+        .thirteenth-button:hover,
+        .fourteenth-button:hover,
+        .fifteenth-button:hover,
+        .sixteenth-button:hover,
+        .eighteenth-button:hover,
+        .nineteenth-button:hover,
+        .twentyth-button:hover,
+        .twentyoneth-button:hover,
+        .twentytwoth-button:hover,
+        .twentythreeth-button:hover,
+        .twentyfourth-button:hover,
+        .twentfiveth-button:hover,
+        .twentysixth-button:hover,
+        .twentyseventh-button:hover,
+        .twentyeighth-button:hover,
+        .twentynineth-button:hover,
+        .thirtyth-button:hover,
+        .thirtyoneth-button:hover,
+        .thirtytwoth-button:hover,
+        .thirtythreeth-button:hover,
+        .thirtyfourth-button:hover,
+        .thirtyfiveth-button:hover,
+        .thirtysixth-button:hover,
+        .thirtyseventh-button:hover,
+        .thirtyeighth-button:hover {
+            font-size: 18pt;
+           
+        }
+
+        .first-button:before,
+        .second-button:before,
+        .third-button:before,
+        .fourth-button:before,
+        .fifth-button:before,
+        .sixth-button:before,
+        .seventh-button:before,
+        .eighth-button:before,
+        .nineth-button:before,
+        .tenth-button:before,
+        .eleventh-button:before,
+        .tweleveth-button:before,
+        .thirteenth-button:before,
+        .fourteenth-button:before,
+        .fifteenth-button:before,
+        .sixteenth-button:before,
+        .eighteenth-button:before,
+        .nineteenth-button:before,
+        .twentyth-button:before,
+        .twentyoneth-button:before,
+        .twentytwoth-button:before,
+        .twentythreeth-button:before,
+        .twentyfourth-button:before,
+        .twentfiveth-button:before,
+        .twentysixth-button:before,
+        .twentyseventh-button:before,
+        .twentyeighth-button:before,
+        .twentynineth-button:before,
+        .thirtyth-button:before,
+        .thirtyoneth-button:before,
+        .thirtytwoth-button:before,
+        .thirtythreeth-button:before,
+        .thirtyfourth-button:before,
+        .thirtyfiveth-button:before,
+        .thirtysixth-button:before,
+        .thirtyseventh-button:before,
+        .thirtyeighth-button:before {
+            perspective: 50px;
+            perspective-origin: 45% 80%;
+          
+        }
+
+        .first-button::after,
+        .second-button::after,
+        .third-button::after,
+        .fourth-button::after,
+        .fifth-button::after,
+        .sixth-button::after,
+        .seventh-button::after,
+        .eighth-button::after,
+        .nineth-button::after,
+        .tenth-button::after,
+        .eleventh-button::after,
+        .tweleveth-button::after,
+        .thirteenth-button::after,
+        .fourteenth-button::after,
+        .fifteenth-button::after,
+        .sixteenth-button::after,
+        .eighteenth-button::after,
+        .nineteenth-button::after,
+        .twentyth-button::after,
+        .twentyoneth-button::after,
+        .twentytwoth-button::after,
+        .twentythreeth-button::after,
+        .twentyfourth-button::after,
+        .twentfiveth-button::after,
+        .twentysixth-button::after,
+        .twentyseventh-button::after,
+        .twentyeighth-button::after,
+        .twentynineth-button::after,
+        .thirtyth-button::after,
+        .thirtyoneth-button::after,
+        .thirtytwoth-button::after,
+        .thirtythreeth-button::after,
+        .thirtyfourth-button::after,
+        .thirtyfiveth-button::after,
+        .thirtysixth-button::after,
+        .thirtyseventh-button::after,
+        .thirtyeighth-button::after {
+            content: '';
+          font-size: 14pt;
+            color: rgb(0, 0, 0);
+            rotate: 180deg;
+            top: -1px;
+            right: 0;
+            bottom: 10px;
+            left: 0;
+            transform: scaleY(0.9) rotateX(0deg);
+            transform-origin: 50% 90%;
+            transform: skew(30deg, 0deg) scale(1, 1.2);
+            opacity: 0;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+         
+          
+        }
+
+        .first-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .second-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .third-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .fourth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .fifth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .sixth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .seventh-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .eighth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .nineth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .tenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .eleventh-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .tweleveth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .fourteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .fifteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .sixteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .eighteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .nineteenth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentyth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentyoneth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentytwoth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentythreeth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentyfourth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentfiveth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentysixth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentyseventh-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentyeighth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .twentynineth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyoneth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtytwoth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtythreeth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyfourth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyfiveth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtysixth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyseventh-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .thirtyeighth-button::after {
+            content: '࿀';
+            position: absolute;
+        }
+
+        .first-button:hover::after,
+        .second-button:hover::after,
+        .third-button:hover::after,
+        .fourth-button:hover::after,
+        .fifth-button:hover::after,
+        .sixth-button:hover::after,
+        .seventh-button:hover::after,
+        .eighth-button:hover::after,
+        .nineth-button:hover::after,
+        .tenth-button:hover::after,
+        .eleventh-button:hover::after,
+        .tweleveth-button:hover::after,
+        .thirteenth-button:hover::after,
+        .fourteenth-button:hover::after,
+        .fifteenth-button:hover::after,
+        .sixteenth-button:hover::after,
+        .eighteenth-button:hover::after,
+        .nineteenth-button:hover::after,
+        .twentyth-button:hover::after,
+        .twentyoneth-button:hover::after,
+        .twentytwoth-button:hover::after,
+        .twentythreeth-button:hover::after,
+        .twentyfourth-button:hover::after,
+        .twentfiveth-button:hover::after,
+        .twentysixth-button:hover::after,
+        .twentyseventh-button:hover::after,
+        .twentyeighth-button:hover::after,
+        .twentynineth-button:hover::after,
+        .thirtyth-button:hover::after,
+        .thirtyoneth-button:hover::after,
+        .thirtytwoth-button:hover::after,
+        .thirtythreeth-button:hover::after,
+        .thirtyfourth-button:hover::after,
+        .thirtyfiveth-button:hover::after,
+        .thirtysixth-button:hover::after,
+        .thirtyseventh-button:hover::after,
+        .thirtyeighth-button:hover::after {
+            opacity: 0.3;
+            filter: blur(0.1px);
+           
+        }
+
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+      
+      
+      
+      .info,
+      .de{
+            display: inline-block;
+            position: relative;
+            font-size: 15pt;
+            font: 18px Hershey Futura Regular;
+            cursor: help;
+            color: black;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-underline-offset: 4px;
+        }
+      
+       @font-face {
+            font-family: Hershey Futura Regular;
+            src: url("https://cdn.glitch.global/3c1c876b-20ac-4c1f-8b76-a7d7cbf2aa45/Hershey-Noailles-Futura-Duplex-Regular.otf?v=1718549356950");
+        }
+      
+       #infotext{
+            font: 18px Hershey Futura Regular;
+        }
+      
+    
+      
+       #copyButton,
+      #langToggle {
+           font: 18px Hershey Futura Regular;
+           color: black;
+           position: absolute !important;
+           filter: blur(0.1px);
+           vertical-align: super;
+           position: absolute;
+           transition: filter 0.3s ease;
+           text-decoration: underline;
+           text-decoration-style: wavy;
+           text-underline-offset: 4px;
+         }
+       #copyButton::before,
+      #langToggle::before {
+           perspective: 50px;
+           perspective-origin: 45% 80%;
+         }
+      
+       #copyButton::after,
+      #langToggle::after {
+            content: '';
+            position: absolute;
+            color: rgb(0, 0, 0);
+            rotate: 180deg;
+            top: -13px;
+            right: 0;
+            bottom: 0px;
+            left: 0;
+            transform: scaleY(0.9) rotateX(0deg);
+            transform-origin: 50% 90%;
+            transform: skew(30deg, 0deg) scale(1, 1.2);
+            opacity: 0;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+         }
+       #copyButton:hover::after,
+      #langToggle:hover::after {
+            opacity: 0.3;
+         }
+       #copyButton:hover,
+      #langToggle:hover {
+            font-style: italic;
+            transition: transform 0.5s ease;
+            text-shadow: 0 0 6px black;
+       }
+
+       #confirmationMessage{
+            text-decoration: none;
+       }
+   
+       sup {
+            font: 14px Hershey Futura Regular;
+            position: relative;
+            vertical-align: baseline;
+            top: -0.2em;
+      }
+      
+       .source {
+            font: 16px Hershey Futura Regular;
+            font-style: oblique;
+       }
+      
+       .hidden{
+            display: none;
+       }
+      
+       #addition {
+            font: 19px Hershley Light;
+            font-style: oblique;
+            transition: margin-left 0.5s ease;
+            padding-left: 60px;
+        }
+      
+       .addition {
+             font: 19px Hershley Light;
+             font-style: oblique;
+             transition: margin-left 0.5s ease;
+             padding-left: 60px;
+         }
+      
+        .animate-move {
+             transition: margin-left 0.5s ease;
+         }
+        
+      .softtoggle,
+      .hypertexttoggle,
+      .softtwotoggle,
+      .Guintoggle,
+      .urltoggle {
+            font: 19px Hershey Futura Regular;
+            cursor: pointer;
+        }
+        
+      .softtoggle:hover,
+      .hypertexttoggle:hover,
+      .softtwotoggle:hover,
+      .Guintoggle:hover,
+      .urltoggle:hover {
+            font: 19px Hershley Light;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-underline-offset: 3px;
+        }
+         
+    </style>
+  
+</head>
+
+<body>
+  <a class="info" href="#" onclick="toggleInfo()">info</a>
+    <div id="infotext" style="display: none;">
+        <span id="softToggle" class="softtoggle" onclick="toggleAddition('softAddition');">soft</span>
+            <span id="softAddition" class="addition hidden">~sth. that is adaptive, ambiguous, resilient, alive</span>
+        
+        encyclopedia explores the web’s intrinsic network nature as a narrative tool. By claiming 
+      <span id="hypertextToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextAddition');">hypertext's</span>
+            <span id="hypertextAddition" class="addition hidden">~text that is not constrained to be linear, representing complex relations that are linked together through hyperlinks; usually displayed on electronic devices.</span>
+        
+        non-sequential and non-linear structures as an antidote to an alienating, heroic, and causal mode of reasoning
+        dominating Western perception and belief system, 
+      <span id="softtwoToggle" class="softtwotoggle" onclick="toggleAddition('softtwoAddition');">soft</span>
+            <span id="softtwoAddition" class="addition hidden">~sth. that is adaptive, ambiguous, resilient, alive</span> 
+        encyclopedia enables connections between links that
+        initially seemed distant. It fosters associations and opens up new perspectives, constantly (re)linking and
+        (re)shaping truths. As a different kind of narrative, as a container 
+      
+      <span id="GuinToggle" class="Guintoggle" onclick="toggleAddition('GuinAddition');">“[...] holding things in a particular, powerful relation to one another and to us.”<sup>1</sup></span>
+            <span id="GuinAddition" class="addition hidden"><sup style=" font-style: oblique; font-size: 14px; font-family: Hershley Light;">1</sup>Ursula K. Le Guin: The Carrier Bag Theory of Fiction, Ignota Books, London 2019, p. 41</span>
+        
+        Conceived as the dawn of a new world order by its creators, the
+        web arises from the same systematic essence inherent to the fabric of existence — as a network of connections
+        and interdependencies.
+        <br><br>
+        This
+      <span id="hypertexttwoToggle" class="hypertexttoggle" onclick="toggleAddition('hypertexttwoAddition');">hypertext</span>
+            <span id="hypertexttwoAddition" class="addition hidden">~text that is not constrained to be linear, representing complex relations that are linked together through hyperlinks; usually displayed on electronic devices.</span>
+        
+      document transforms words into a poem, a story, a lore, a spell, a ritual. Composed by the user’s navigation between
+        hyperlinks, the document’s <span id="urlToggle" class="urltoggle" onclick="toggleAddition('urlAddition');">URL</span>
+            <span id="urlAddition" class="addition hidden">~Uniform Resource Locator; coll. the address of a resource on the web</span>
+  
+        becomes a carrier of the narrative. The document is displayed on a screen,
+        attached to a triangular metal plate, which is contrasted in its rigid materiality and linear shape by a soft
+        fabric panel on the floor, acting as its shadow.
+        <br><br>
+      <a id="langToggle" class="lang-toggle" href="#" onclick="toggleLanguage()">de</a>
+      <br><br>
+      
+  </div>
+  
+  <div id="copy">
+      <a id="copyButton" onclick="copyURLToClipboard(); return false;">copy url</a>
+<div id="confirmationMessage" class="confirmation-animation" style="display: none;">copied to the clipboard</div>
+    </div>     
+      
+    <button class="first-button" style="top: 20px; left: 20px;" data-slug="a-repository-of-meaning">•</button>
+    <button class="second-button" style="top: 20px; left: 20px;" data-slug="simply-suggesting-no-straight-line">•</button>
+    <button class="third-button" style="top: 20px; left: 20px;" data-slug="acting-as-a-reading-room">•</button>
+    <button class="fourth-button" style="top: 20px; left: 20px;" data-slug="composing-signs-of-many-kinds">•</button>
+    <button class="fifth-button" style="top: 20px; left: 20px;"  data-slug="as-a-lively-image-of-the-universe">•</button>
+    <button class="sixth-button" style="top: 20px; left: 20px;" data-slug="to-contain--contradiction-and-complexity">•</button>
+    <button class="seventh-button" style="top: 20px; left: 20px;" data-slug="to-be-native-to-this-space-requires-learning-to-exist-within-their-connections">•</button>
+    <button class="eighth-button" style="top: 20px; left: 20px;" data-slug="to-speak-reality-into-being">•</button>
+    <button class="nineth-button" style="top: 20px; left: 20px;" data-slug="enter-url-from-multiple-directions">•</button>
+    <button class="tenth-button" style="top: 20px; left: 20px;" data-slug="as-a-linked-event-and-a-browsable-story">•</button>
+    <button class="eleventh-button" style="top: 20px; left: 20px;" data-slug="as-a-soft-blend-of-factual-and-non~factual">•</button>
+    <button class="thirteenth-button" style="top: 20px; left: 20px;" data-slug="l-o-o-s-e-l-y-joined-into-pervasive-networks">•</button>
+    <button class="fourteenth-button" style="top: 20px; left: 20px;" data-slug="as-an-antidote-to-the-heroic-normatively">•</button>
+    <button class="fifteenth-button" style="top: 20px; left: 20px;" data-slug="detached-from-the-institutionalized-thought">•</button>
+    <button class="sixteenth-button" style="top: 20px; left: 20px;" data-slug="liberating-when-used-transformatively">•</button>
+    <button class="eighteenth-button" style="top: 20px; left: 20px;" data-slug="equip-the-word-with-divergences">•</button>
+    <button class="nineteenth-button" style="top: 20px; left: 20px;" data-slug="localized-and-disseminated">•</button>
+    <button class="twentyth-button" style="top: 20px; left: 20px;" data-slug="weaving-webs-from-isolated-words">•</button>
+    <button class="twentyoneth-button" style="top: 20px; left: 20px;" data-slug="where-everything-becomes-potentially-addressable">•</button>
+    <button class="twentytwoth-button" style="top: 20px; left: 20px;" data-slug="to-learn-to-read-the-world-differently">•</button>
+    <button class="twentythreeth-button" style="top: 20px; left: 20px;" data-slug="mediating-between-parallel-perspectives-from-past-present-and-future">•</button>
+    <button class="twentyfourth-button" style="top: 20px; left: 20px;" data-slug="perpetually-circulating-between-connections">•</button>
+    <button class="twentfiveth-button" style="top: 20px; left: 20px;" data-slug="strung-together-to-reveal-significance">•</button>
+    <button class="twentysixth-button" style="top: 20px; left: 20px;" data-slug="defined-through-its-relation">•</button>
+    <button class="twentyseventh-button" style="top: 20px; left: 20px;" data-slug="while-rhythmically-alternating-between-realities">•</button>
+    <button class="twentyeighth-button" style="top: 20px; left: 20px;" data-slug="cannot-be-divided-up-neatly">•</button>
+    <button class="twentynineth-button" style="top: 20px; left: 20px;" data-slug="exceeding-isolated-thoughts">•</button>
+    <button class="thirtyth-button" style="top: 20px; left: 20px;" data-slug="composing-words-into-narratives">•</button>
+    <button class="thirtyoneth-button" style="top: 20px; left: 20px;" data-slug="overcoming-the-conviction-to-confine-the-world-within-rigid-causality">•</button>
+    <button class="thirtytwoth-button" style="top: 20px; left: 20px;" data-slug="providing-wider-narratives-of-ambiguity">•</button>
+    <button class="thirtythreeth-button" style="top: 20px; left: 20px;" data-slug="on-hazy-paths-and-promising-links">•</button>
+    <button class="thirtyfourth-button" style="top: 20px; left: 20px;" data-slug="where-parallel-routes-merge-into-broader-spectrums">•</button>
+    <button class="thirtyfiveth-button" style="top: 20px; left: 20px;" data-slug="constantly-(re)linking-and-(re)shaping-truths">•</button>
+    <button class="thirtysixth-button" style="top: 20px; left: 20px;" data-slug="adding-layers-of-relations">•</button>
+    <button class="thirtyseventh-button" style="top: 20px; left: 20px;" data-slug="arose-from-the-same-systematic-essence-inherent-to-the-fabric-of-existence">•</button>
+    <button class="thirtyeighth-button" style="top: 20px; left: 20px;" data-slug="as-a-network-of-connections-and-interdependencies">•</button>
+
+    <canvas id="connectionCanvas"></canvas>
+
+<script>
+  // JavaScript, um die Textauswahl zu verhindern
+      document.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+     
+// info Teil
+  
+// Funktionen zur Sprachumschaltung
+        // Funktionen zur Sprachumschaltung
+        function switchToGerman() {
+            document.getElementById('infotext').innerHTML = `
+                <span id="softToggle" class="softtoggle" onclick="toggleAddition('softAddition');">soft</span>
+                <span id="softAddition" class="addition hidden">~etwas, das flexibel, adaptiv und unbestimmt ist.</span>
+                
+                encyclopedia ist ein
+                <span id="hypertextToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextAddition');">Hypertextdokument</span>
+                <span id="hypertextAddition" class="addition hidden">~Text, der nicht linear ist und komplexe Beziehungen darstellen kann,
+                die über Hyperlinks verknüpft sind; dieser findet üblicherweise Anwendung auf elektronischen Geraeten.</span>
+                
+                und eine konzeptionelle Auseinandersetzung mit der grundlegenden Struktur des Webs als narrative Gestaltungsform.
+                Als eine Methode, die Grenzen der konventionellen Informations- und Wissenspraktiken zu überwinden, ist der
+                
+                <span id="hypertexttwoToggle" class="hypertexttoggle" onclick="toggleAddition('hypertexttwoAddition');">Hypertext</span>
+                <span id="hypertexttwoAddition" class="addition hidden">~Text, der nicht linear ist und komplexe Beziehungen darstellen kann,
+                die über Hyperlinks verknüpft sind; dieser findet üblicherweise Anwendung auf elektronischen Geraeten.</span>
+                
+                ein Netzwerk <span id="PlantToggle" class="softtoggle" onclick="toggleAddition('PlantAddition');">“ohne Mittelpunkt, ohne Organisationsprinzipien und Hierarchien.“<sup>1</sup></span>
+                <span id="PlantAddition" class="addition hidden"><sup style=" font-style: oblique; font-size: 14px; font-family: Hershley Light;">1</sup>Sadie Plant: nullen+einsen, Berlin Verlag, Berlin 1998, S.17</span>
+                Es ist ein Ort, der in seinen
+                Verbindungen existiert, ein Behaelter, der 
+                
+                <span id="GuindeToggle" class="hypertexttoggle" onclick="toggleAddition('GuindeAddition');">“Dinge in einem ganz bestimmten, wirkungsmaechtigen Verhaeltnis zueinander und zu uns
+                stehend fasst.“<sup>2</sup></span>
+                <span id="GuindeAddition" class="addition hidden"><sup style=" font-style: oblique; font-size: 14px; font-family: Hershley Light;">2</sup>Ursula K. Le Guin: Am Anfang war der Beutel. Warum uns Fortschritts-Utopien an den Rand des Abgrunds führten und wie Denken in Rundungen die Grundlage für gutes Leben schafft, thinkOya, Klein Jasedow 2020, S. 19</span> Innerhalb des
+                
+                <span id="hypertextthreeToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextthreeAddition');">Hypertexts</span>
+                <span id="hypertextthreeAddition" class="addition hidden">~Text, der nicht linear ist und komplexe Beziehungen darstellen kann, die über Hyperlinks verknüpft sind; dieser findet üblicherweise Anwendung auf elektronischen Geraeten.</span>
+                
+                werden Nutzer*innen gleichzeitig zu Leser*innen und Autor*innen der Narrative, die sich in multisequenzieller und nicht-linear Weise entfalten, abstrakte Verbindungen schaffen, Perspektiven eroeffnen und Gegebenheiten aufbrechen. Die Arbeit untersucht die dynamische und verwobene Qualitaet des
+               
+               <span id="hypertextfourToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextfourAddition');">Hypertext</span>
+                <span id="hypertextfourAddition" class="addition hidden">~Text, der nicht linear ist und komplexe Beziehungen darstellen kann, die über Hyperlinks verknüpft sind; dieser findet üblicherweise Anwendung auf elektronischen Geraeten.</span>
+                
+                als Gegenmodell zur heroisch-linearen westlichen Wahrnehmung–einer verkürzten Version der Wirklichkeit–, die fundamentale Zusammenhaenge in den Schatten stellt.
+                
+                <br><br>
+                Die Installation zeigt eine keilfoermige Metallplatte, die als Displayflaeche für den Bildschirm dient und in ihrer Materialitaet und Form von einer Stoffbahn auf dem Boden, als weicher Schatten, kontrastiert wird. Dieses
+                <span id="hypertextfiveToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextfiveAddition');">Hypertextdokument</span>
+                <span id="hypertextfiveAddition" class="addition hidden">~Text, der nicht linear ist und komplexe Beziehungen darstellen kann, die über Hyperlinks verknüpft sind; dieser findet üblicherweise Anwendung auf elektronischen Geraeten.</span>
+                ist dabei der zentrale Punkt der Arbeit, dessen
+                
+                <span id="urldeToggle" class="softtoggle" onclick="toggleAddition('urldeAddition');">URL</span>
+                <span id="urldeAddition" class="addition hidden">~Uniform Resource Locator; ugs. die Adresse einer Ressource im Web.</span>
+                
+                zum Traeger des Narrativs wird, das aus der Navigation des*der Nutzers*in von Hyperlink zu Hyperlink entsteht.
+                <br><br>
+                <a id="langToggle" class="lang-toggle" href="#" onclick="toggleLanguage()">en</a>
+                <br><br>
+            `;
+        }
+
+        function switchToEnglish() {
+            document.getElementById('infotext').innerHTML = `
+                <span id="softToggle" class="softtoggle" onclick="toggleAddition('softAddition');">soft</span>
+                <span id="softAddition" class="addition hidden">~sth. that is adaptive, ambiguous, resilient, alive</span>
+                encyclopedia explores the web’s intrinsic network nature as a narrative tool. By claiming 
+                <span id="hypertextToggle" class="hypertexttoggle" onclick="toggleAddition('hypertextAddition');">hypertext's</span>
+                <span id="hypertextAddition" class="addition hidden">~text that is not constrained to be linear, representing complex relations that are linked together through hyperlinks; usually displayed on electronic devices.</span>
+                non-sequential and non-linear structures as an antidote to an alienating, heroic, and causal mode of reasoning dominating Western perception and belief system, 
+                <span id="softtwoToggle" class="softtwotoggle" onclick="toggleAddition('softtwoAddition');">soft</span>
+                <span id="softtwoAddition" class="addition hidden">~sth. that is adaptive, ambiguous, resilient, alive</span> 
+                encyclopedia enables connections between links that initially seemed distant. It fosters associations and opens up new perspectives, constantly (re)linking and (re)shaping truths. As a different kind of narrative, as a container 
+                <span id="GuinToggle" class="Guintoggle" onclick="toggleAddition('GuinAddition');">“[...] holding things in a particular, powerful relation to one another and to us.”<sup>1</sup></span>
+                <span id="GuinAddition" class="addition hidden"><sup style=" font-style: oblique; font-size: 14px; font-family: Hershley Light;">1</sup>Ursula K. Le Guin: The Carrier Bag Theory of Fiction, Ignota Books, London 2019, p. 41</span>
+                Conceived as the dawn of a new world order by its creators, the web arises from the same systematic essence inherent to the fabric of existence — as a network of connections and interdependencies.
+                <br><br>
+                This
+                <span id="hypertexttwoToggle" class="hypertexttoggle" onclick="toggleAddition('hypertexttwoAddition');">hypertext</span>
+                <span id="hypertexttwoAddition" class="addition hidden">~text that is not constrained to be linear, representing complex relations that are linked together through hyperlinks; usually displayed on electronic devices.</span>
+                document transforms words into a poem, a story, a lore, a spell, a ritual. Composed by the user’s navigation between hyperlinks, the document’s <span id="urlToggle" class="urltoggle" onclick="toggleAddition('urlAddition');">URL</span>
+                <span id="urlAddition" class="addition hidden">~Uniform Resource Locator; coll. the address of a resource on the web</span> becomes a carrier of the narrative. The document is displayed on a screen, attached to a triangular metal plate, which is contrasted in its rigid materiality and linear shape by a soft fabric panel on the floor, acting as its shadow.
+                <br><br>
+                <a id="langToggle" class="lang-toggle" href="#" onclick="toggleLanguage()">de</a>
+                <br><br>
+            `;
+        }
+
+        function toggleLanguage() {
+            let currentLang = document.getElementById('langToggle').innerText;
+            if (currentLang === "de") {
+                switchToGerman();
+            } else {
+                switchToEnglish();
+            }
+        }
+
+        function toggleInfo() {
+            const infoText = document.getElementById('infotext');
+            if (infoText.style.display === "none") {
+                infoText.style.display = "block";
+            } else {
+                infoText.style.display = "none";
+            }
+        }
+
+        function toggleAddition(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('hidden');
+            element.classList.toggle('animate-move');
+        }
+
+        // Button um URL in die Zwischenablage zu kopieren
+function copyURLToClipboard() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+        var copyButton = document.getElementById('copyButton');
+        copyButton.textContent = 'copied to the clipboard';
+        setTimeout(() => {
+            copyButton.textContent = 'copy url';
+        }, 2000); 
+    }).catch(err => {
+        console.error('Fehler beim Kopieren der URL: ', err);
+    });
+}
+
+
+document.getElementById('confirmationMessage').addEventListener('click', function() {
+    this.classList.add('clicked');
+});
+
+     
+// Anzeige des Infotexts
+// Toggle Info Function
+    function toggleInfo() {
+      const infoText = document.getElementById('infotext');
+      const buttons = document.querySelectorAll('button');
+
+      if (infoText.style.display === 'none') {
+        infoText.style.display = 'block';
+        buttons.forEach(button => button.disabled = true); // Disable buttons
+      } else {
+        infoText.style.display = 'none';
+        buttons.forEach(button => button.disabled = false); // Enable buttons
+      }
+    }
+     
+// Toggle für beliebiges Wort-Addition
+function toggleAddition(elementId) {
+            const addition = document.getElementById(elementId);
+            const isHidden = addition.classList.contains('hidden');
+            
+            addition.classList.toggle('hidden');
+            
+            if (isHidden) {
+                addition.style.marginLeft = "-10%"; 
+                setTimeout(function() {
+                    addition.style.marginLeft = "0"; 
+                }, 10);
+            } else {
+                setTimeout(function() {
+                    addition.style.marginLeft = "-10%"; 
+                }, 10);
+            }
+        }
+  
+     
+// Funktion zum Anzeigen der aktuellen URL im Titel
+function displayCurrentURL() {
+    const currentURL = window.location.href;
+    document.title = currentURL; 
+}
+
+// Funktion zum Verarbeiten der Slugs aus der URL
+function processSlugsFromURL() {
+    const currentURL = window.location.href;
+    const urlParts = currentURL.split('/');
+    const slugs = urlParts.slice(3); 
+
+    slugs.forEach(slug => {
+        if (slug) addSlug(slug);
+    });
+}
+
+// Rufe die Funktionen beim Laden der Seite auf
+window.addEventListener('load', function () {
+    clearSlugs(); // Slugs löschen, wenn die Seite geladen wird
+    processSlugsFromURL(); // Verarbeite Slugs aus der URL
+    randomizeButtonPositions(); // Buttons zufällig anordnen
+    displayCurrentURL(); // URL im Titel anzeigen
+});
+
+// Funktion zum Löschen der Slugs
+        function clearSlugs() {
+            fetch('/api/reset-slugs', { method: 'GET' })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Slugs erfolgreich gelöscht');
+                    } else {
+                        console.error('Fehler beim Löschen der Slugs');
+                    }
+                })
+                .catch(error => {
+                    console.error('Fehler beim Senden des Löschbefehls für die Slugs:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = document.querySelectorAll('.null-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const slug = button.getAttribute('data-slug');
+                    fetch(`/api/add-slug`, { 
+                        method: 'POST', 
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ slug })
+                    });
+                    location.href = '/anzeige.html';
+                });
+            });
+            fetch('/api/reset-slugs', { method: 'GET' });
+        });
+
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function () {
+                const slug = button.getAttribute('data-slug'); // Hole den Slug aus dem data-slug-Attribut
+                addSlug(slug);
+                appendSlugToURL(slug); // Aktualisiere die URL
+                displayNumber(button); // Zeige die Nummer an der Position des Buttons
+                drawLines(); // Zeichne die Linien zwischen den geklickten Buttons
+            });
+        });
+
+// Funktion zum Hinzufügen eines Slugs
+function addSlug(slug) {
+    fetch('/api/add-slug', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ slug })
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log('Slug erfolgreich hinzugefügt');
+        } else {
+            console.error('Fehler beim Hinzufügen des Slugs');
+        }
+    })
+    .catch(error => {
+        console.error('Fehler beim Senden des Slugs:', error);
+    });
+}
+
+// Funktion zum Anhängen des Slugs an die URL
+function appendSlugToURL(slug) {
+    const currentURL = window.location.href;
+    const newURL = currentURL.endsWith('/') ? currentURL + slug : currentURL + '/' + slug;
+    window.history.pushState({}, document.title, newURL);
+    displayCurrentURL(); 
+}
+
+// Funktion zum zufälligen Positionieren der Buttons
+function randomizeButtonPositions() {
+    const buttons = document.querySelectorAll('button');
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const buttonPositions = [];
+
+    buttons.forEach(button => {
+        let overlapping;
+        let randomX, randomY;
+
+        do {
+            overlapping = false;
+            randomX = Math.floor(Math.random() * (windowWidth - button.offsetWidth));
+            randomY = Math.floor(Math.random() * (windowHeight - button.offsetHeight));
+
+            for (const pos of buttonPositions) {
+                const dx = pos.x - randomX;
+                const dy = pos.y - randomY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < button.offsetWidth) { 
+                    overlapping = true;
+                    break;
+                }
+            }
+        } while (overlapping);
+
+        button.style.left = `${randomX}px`;
+        button.style.top = `${randomY}px`;
+        buttonPositions.push({ x: randomX, y: randomY });
+    });
+}
+
+// Rufe die Funktion auch bei Änderungen der Fenstergröße auf
+window.addEventListener('resize', function () {
+    randomizeButtonPositions();
+});
+
+// Canvas zum Zeichnen der "Linien"
+const canvas = document.getElementById('connectionCanvas');
+const ctx = canvas.getContext('2d');
+let clickedButtons = [];
+
+// Funktion zum Ändern der Größe des Canvas entsprechend der Fenstergröße
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+// Funktion zum Anzeigen einer Zahl an der Stelle, an der der Button geklickt wurde
+function displayNumber(button) {
+    const position = getButtonPosition(button);
+    const numberElement = document.createElement('div');
+    numberElement.textContent = clickedButtons.length; 
+    numberElement.classList.add('line-number');  
+    numberElement.style.position = 'absolute';
+    numberElement.style.left = `${position.x}px`;
+    numberElement.style.top = `${position.y}px`;
+    numberElement.style.transform = 'translate(-50%, -50%)'; 
+    numberElement.style.fontSize = '19.5px'; 
+
+    document.body.appendChild(numberElement);
+}
+
+     
+//hier werden zu den Nummer noch eine Klammer hinzugefügt
+// Funktion zum Anzeigen einer Zahl an der Stelle, an der der Button geklickt wurde
+//function displayNumber(button) {
+//    const position = getButtonPosition(button);
+//    const numberElement = document.createElement('div');
+//    const number = clickedButtons.length;
+//    numberElement.textContent = `(${number})`; 
+//    numberElement.classList.add('line-number');   
+//    numberElement.style.position = 'absolute';
+//    numberElement.style.left = `${position.x}px`;
+//    numberElement.style.top = `${position.y}px`;
+//    numberElement.style.transform = 'translate(-50%, -50%)'; 
+
+//    document.body.appendChild(numberElement);
+//}
+
+
+// Funktion zum Ermitteln der Position eines Buttons
+function getButtonPosition(button) {
+    const rect = button.getBoundingClientRect();
+    return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+    };
+}
+
+// Funktion zum Zeichnen der "Linien" zwischen den angeklickten Buttons
+function drawLines() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+       if (clickedButtons.length > 1) {
+         ctx.fillStyle = 'black'; 
+          for (let i = 1; i < clickedButtons.length; i++) {
+                    const startX = clickedButtons[i - 1].x;
+                    const startY = clickedButtons[i - 1].y;
+                    const endX = clickedButtons[i].x;
+                    const endY = clickedButtons[i].y;
+                    const deltaX = endX - startX;
+                    const deltaY = endY - startY;
+                    const steps = Math.max(Math.abs(deltaX), Math.abs(deltaY)) / 10; 
+                    const xIncrement = deltaX / steps;
+                    const yIncrement = deltaY / steps;
+                    let x = startX;
+                    let y = startY;
+
+                    for (let j = 0; j <= steps; j++) {
+                        ctx.fillText('°', x, y);
+                        x += xIncrement;
+                        y += yIncrement;
+                    }
+                  
+                }
+            }
+        }
+     
+// Anstelle von ° wird ein Pfeil gezeichnet:
+// Funktion zum Zeichnen der "Linien" zwischen den angeklickten Buttons
+// function drawLines() {
+//    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+//    if (clickedButtons.length > 1) {
+//       ctx.fillStyle = 'black'; 
+//        for (let i = 1; i < clickedButtons.length; i++) {
+//            const startX = clickedButtons[i - 1].x;
+//            const startY = clickedButtons[i - 1].y;
+//            const endX = clickedButtons[i].x;
+//            const endY = clickedButtons[i].y;
+//            const deltaX = endX - startX;
+//            const deltaY = endY - startY;
+//            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+//            const angle = Math.atan2(deltaY, deltaX);
+
+//            // Zeichne die Linie
+//            ctx.beginPath();
+//            ctx.moveTo(startX, startY);
+//            ctx.lineTo(endX, endY);
+//            ctx.stroke();
+
+//            // Zeichne die Pfeilspitze
+//            const arrowSize = 10; // Größe der Pfeilspitze 
+//            ctx.beginPath();
+//            ctx.moveTo(endX - arrowSize * Math.cos(angle - Math.PI / 6), endY - arrowSize * Math.sin(angle - Math.PI / 6));
+//            ctx.lineTo(endX, endY);
+//            ctx.lineTo(endX - arrowSize * Math.cos(angle + Math.PI / 6), endY - arrowSize * Math.sin(angle + Math.PI / 6));
+//            ctx.fill();
+//        }
+//    }
+//}
+
+
+
+// Funktion zum Zufälligen Positionieren der Buttons
+function randomizeButtonPositions() {
+    const buttons = document.querySelectorAll('button');
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    buttons.forEach(button => {
+        let overlapping;
+        let randomX, randomY;
+
+        do {
+            overlapping = false;
+            randomX = Math.floor(Math.random() * (windowWidth - button.offsetWidth));
+            randomY = Math.floor(Math.random() * (windowHeight - button.offsetHeight));
+
+            for (const pos of clickedButtons) {
+                const dx = pos.x - randomX;
+                const dy = pos.y - randomY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < button.offsetWidth) { // Anpassung des Wertes nach Bedarf
+                    overlapping = true;
+                    break;
+                }
+            }
+        } while (overlapping);
+
+        button.style.left = `${randomX}px`;
+        button.style.top = `${randomY}px`;
+    });
+}
+
+// Event-Listener für alle Buttons hinzufügen
+// Button sind unendlich klickbar    
+//document.querySelectorAll('button').forEach(button => {
+//    button.addEventListener('click', function () {
+//        const position = getButtonPosition(button);
+//        clickedButtons.push(position);
+//        drawLines();
+//        randomizeButtonPositions(); // Buttons neu anordnen
+//    });
+//});
+     
+// Event-Listener für alle Buttons hinzufügen 
+// bei diesem alternativen Code(vergleiche oben) können alle Button nur 1x geklickt werden
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', function () {
+        const position = getButtonPosition(button);
+        clickedButtons.push(position);
+        drawLines();
+        randomizeButtonPositions(); // Buttons neu anordnen
+
+        // Deaktiviere den geklickten Button
+        button.disabled = true;
+
+        // Entferne den geklickten Button aus dem DOM
+        button.remove();
+    });
+});
+
+
+// Titel-Scrolling-Funktion
+const titleText = "check-address-bar-";
+let titleIndex = 0;
+
+function scrollTitle() {
+    document.title = titleText.substring(titleIndex) + titleText.substring(0, titleIndex);
+    titleIndex = (titleIndex + 1) % titleText.length;
+}
+
+setInterval(scrollTitle, 200);
+     
+// Funktion zum Löschen des Body-Inhalts der anzeige.html
+function clearAnzeigeBody() {
+        fetch('anzeige.html', {
+            method: 'GET'
+        })
+        .then(response => response.text())
+        .then(html => {
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            doc.body.innerHTML = '';
+
+            const modifiedHTML = new XMLSerializer().serializeToString(doc);
+            fetch('anzeige.html', {
+                method: 'PUT',
+                body: modifiedHTML
+            })
+            .then(() => {
+                console.log('Body-Inhalt der anzeige.html erfolgreich gelöscht.');
+            })
+            .catch(error => {
+                console.error('Fehler beim Löschen des Body-Inhalts der anzeige.html:', error);
+            });
+        })
+        .catch(error => {
+            console.error('Fehler beim Abrufen der anzeige.html:', error);
+        });
+    }
+
+// Rufe die Funktion zum Löschen des Body-Inhalts der anzeige.html beim Laden der index.html auf
+    window.addEventListener('load', function () {
+        clearAnzeigeBody();
+    });
+     
+</script>
+
+</body>
+</html>
